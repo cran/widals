@@ -73,7 +73,10 @@ Hst.ls.all <- list()
 for(i in 1:tau) { Hst.ls.all[[i]] <- matrix(rnorm(n.all*3), nrow=n.all) }
 
 Hst.combined <- list()
-for(i in 1:tau) { Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, ncol=ncol(Ht), byrow=TRUE), Hst.ls.all[[i]] ) }
+for(i in 1:tau) { 
+    Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, 
+    ncol=ncol(Ht), byrow=TRUE), Hst.ls.all[[i]] ) 
+}
 
 ######## use SSsimple to simulate
 sssim.obj <- SS.sim.tv( 0.999, Hst.combined, 0.1, diag(1, n.all), tau )

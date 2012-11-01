@@ -1,4 +1,4 @@
-unloadHst.ls <-
+unload.Hst.ls <-
 function(Hst.ls, which.col, rgr.lags) {
 	n <- nrow(Hst.ls[[1]])
 	tau <- length(Hst.ls)

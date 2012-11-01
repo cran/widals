@@ -8,7 +8,8 @@ WIDALS Interpolation
 Interpolate to unmonitored sites using WIDALS
 }
 \usage{
-widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, Hs0, Hst0.ls, locs0, geodesic = FALSE, wrap.around = NULL, GP, stnd.d = FALSE, ltco = -16)
+widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, Hs0, Hst0.ls, locs0, 
+geodesic = FALSE, wrap.around = NULL, GP, stnd.d = FALSE, ltco = -16)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -101,7 +102,10 @@ Hst.ls.all <- list()
 for(i in 1:tau) { Hst.ls.all[[i]] <- matrix(rnorm(n.all*2), nrow=n.all) }
 
 Hst.combined <- list()
-for(i in 1:tau) { Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, ncol=ncol(Ht), byrow=TRUE), Hst.ls.all[[i]] ) }
+for(i in 1:tau) { 
+    Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, ncol=ncol(Ht), 
+    byrow=TRUE), Hst.ls.all[[i]] ) 
+}
 
 locs.all <- cbind(runif(n.all, -1, 1), runif(n.all, -1, 1))
 D.mx.all <- distance(locs.all, locs.all, FALSE)
@@ -133,7 +137,8 @@ test.rng <- 20:tau
 ################# use ALS
 xrho <- 1/10
 xreg <- 1/10
-xALS <- H.als.b(Z=Z, Hs=Hs, Ht=Ht, Hst.ls=Hst.ls, rho=xrho, reg=xreg, b.lag=-1, Hs0=Hs0, Ht0=Ht, Hst0.ls=Hst0.ls) 
+xALS <- H.als.b(Z=Z, Hs=Hs, Ht=Ht, Hst.ls=Hst.ls, rho=xrho, reg=xreg, 
+b.lag=-1, Hs0=Hs0, Ht0=Ht, Hst0.ls=Hst0.ls) 
 
 errs.sq <- (Z0 - xALS$Z0.hat)^2
 sqrt( mean(errs.sq[test.rng, ]) )
@@ -141,7 +146,8 @@ sqrt( mean(errs.sq[test.rng, ]) )
 ################# now use WIDALS
 
 GP <- c(1/10, 1/10, 2, 0, 1)
-Zwid <- widals.predict(Z=Z, Hs=Hs, Ht=Ht, Hst.ls=Hst.ls, locs=locs, lags=c(0), b.lag=-1, Hs0=Hs0, Hst0.ls=Hst0.ls, locs0=locs0, FALSE, NULL, GP) 
+Zwid <- widals.predict(Z=Z, Hs=Hs, Ht=Ht, Hst.ls=Hst.ls, locs=locs, lags=c(0), 
+b.lag=-1, Hs0=Hs0, Hst0.ls=Hst0.ls, locs0=locs0, FALSE, NULL, GP) 
 
 errs.sq <- (Z0 - Zwid)^2
 sqrt( mean(errs.sq[test.rng, ]) )

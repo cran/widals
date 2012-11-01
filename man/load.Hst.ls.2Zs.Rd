@@ -1,5 +1,5 @@
-\name{loadHst.ls.2Zs}
-\alias{loadHst.ls.2Zs}
+\name{load.Hst.ls.2Zs}
+\alias{load.Hst.ls.2Zs}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Load Observations into Space-Time Covariates
@@ -8,7 +8,7 @@ Load Observations into Space-Time Covariates
 Insert an observation matrix into space-time covariates, but segregate based on missing values
 }
 \usage{
-loadHst.ls.2Zs(Z, Z.na, Hst.ls.Z, xwhich, rgr.lags = c(0))
+load.Hst.ls.2Zs(Z, Z.na, Hst.ls.Z, xwhich, rgr.lags = c(0))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,7 +29,7 @@ Temporal lagging of \code{Z}.  A scalar integer.
 }
 }
 \details{
-This function, along with \code{\link{loadHst.ls.Z}}, allows the user to convert a set of observations into covariates for another set of observations.  Unlike \code{\link{loadHst.ls.Z}}, this function \emph{splits} \code{Z} based on the argument \code{Z.na}.  Values associated with \code{FALSE} elements of \code{Z.na} are placed into the first column of the specified column-pair of \code{Hst.ls.Z}, Values associated with \code{TRUE} elements of \code{Z.na} are placed into the second column of the specified column-pair of \code{Hst.ls.Z} (all other values in in the specified column-pair of \code{Hst.ls.Z} are zeroed).
+This function, along with \code{\link{load.Hst.ls.Z}}, allows the user to convert a set of observations into covariates for another set of observations.  Unlike \code{\link{load.Hst.ls.Z}}, this function \emph{splits} \code{Z} based on the argument \code{Z.na}.  Values associated with \code{FALSE} elements of \code{Z.na} are placed into the first column of the specified column-pair of \code{Hst.ls.Z}, Values associated with \code{TRUE} elements of \code{Z.na} are placed into the second column of the specified column-pair of \code{Hst.ls.Z} (all other values in in the specified column-pair of \code{Hst.ls.Z} are zeroed).
 }
 \value{
 An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{pst} matrix.
@@ -48,7 +48,7 @@ An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{loadHst.ls.Z}}.
+\code{\link{load.Hst.ls.Z}}.
 }
 
 
@@ -70,19 +70,19 @@ Hst.ls <- list()
 for(i in 1:tau) { Hst.ls[[i]] <- matrix(rnorm(n*4), nrow=n) }
 
 
-loadHst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 1, 0)
+load.Hst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 1, 0)
 
 
 ########## insert into cols 3 and 4
 
-loadHst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 2, 0)
+load.Hst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 2, 0)
 
 
 
 ## The function is currently defined as
 function (Z, Z.na, Hst.ls.Z, xwhich, rgr.lags = c(0)) 
 {
-	tau <- nrow(Z)
+    tau <- nrow(Z)
     min.ndx <- max(1, -min(rgr.lags) + 1)
     max.ndx <- min(tau, tau - max(rgr.lags))
     for (i in min.ndx:max.ndx) {

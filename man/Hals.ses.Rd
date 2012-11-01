@@ -73,7 +73,7 @@ A named list.
 ## The function is currently defined as
 function (Z, Hs, Ht, Hst.ls, rho, reg, b.lag, test.rng) 
 {
-	tau <- nrow(Z)
+    tau <- nrow(Z)
     xALS <- H.als.b(Z = Z, Hs = Hs, Ht = Ht, Hst.ls = Hst.ls, 
         rho = rho, reg = reg, b.lag = b.lag, Hs0 = NULL, Ht0 = NULL, 
         Hst0.ls = NULL)

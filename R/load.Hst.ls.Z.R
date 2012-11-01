@@ -1,4 +1,4 @@
-loadHst.ls.Z <-
+load.Hst.ls.Z <-
 function(Z, Hst.ls.Z, xwhich, rgr.lags=c(0)) {
     tau <- nrow(Z)
     min.ndx <- max(1,   -min(rgr.lags)+1)

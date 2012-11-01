@@ -1,5 +1,5 @@
-\name{unloadHst.ls}
-\alias{unloadHst.ls}
+\name{unload.Hst.ls}
+\alias{unload.Hst.ls}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Convert a Space-Time Covariate into Data
@@ -8,7 +8,7 @@ Convert a Space-Time Covariate into Data
 Convert a spacio-temporal covariate into contemporaneous data
 }
 \usage{
-unloadHst.ls(Hst.ls, which.col, rgr.lags)
+unload.Hst.ls(Hst.ls, which.col, rgr.lags)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,7 +45,7 @@ A numeric \eqn{\tau} x \eqn{n} matrix.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{loadHst.ls.Z}}, \code{\link{loadHst.ls.2Zs}}.
+\code{\link{load.Hst.ls.Z}}, \code{\link{load.Hst.ls.2Zs}}.
 }
 \examples{
 	
@@ -57,7 +57,7 @@ n <- 5
 Hst.ls <- list()
 for(i in 1:tau) { Hst.ls[[i]] <- matrix(rnorm(n*4), nrow=n) }
 
-Zh <- unloadHst.ls(Hst.ls, 1, 0)
+Zh <- unload.Hst.ls(Hst.ls, 1, 0)
 
 
 ## The function is currently defined as

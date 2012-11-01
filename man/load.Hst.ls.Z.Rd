@@ -1,5 +1,5 @@
-\name{loadHst.ls.Z}
-\alias{loadHst.ls.Z}
+\name{load.Hst.ls.Z}
+\alias{load.Hst.ls.Z}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Load Observations into Space-Time Covariates
@@ -8,7 +8,7 @@ Load Observations into Space-Time Covariates
 Insert an observation matrix into space-time covariates
 }
 \usage{
-loadHst.ls.Z(Z, Hst.ls.Z, xwhich, rgr.lags = c(0))
+load.Hst.ls.Z(Z, Hst.ls.Z, xwhich, rgr.lags = c(0))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,7 +27,7 @@ Temporal lagging of \code{Z}.  A scalar integer.
 }
 
 \details{
-This function, along with \code{\link{loadHst.ls.2Zs}}, allows the user to convert a set of observations into covariates for another set of observations.  
+This function, along with \code{\link{load.Hst.ls.2Zs}}, allows the user to convert a set of observations into covariates for another set of observations.  
 }
 
 \value{
@@ -47,7 +47,7 @@ An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{loadHst.ls.2Zs}}.
+\code{\link{load.Hst.ls.2Zs}}.
 }
 \examples{
 
@@ -61,12 +61,12 @@ Z <- matrix(1, tau, n)
 Hst.ls <- list()
 for(i in 1:tau) { Hst.ls[[i]] <- matrix(rnorm(n*4), nrow=n) }
 
-loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, 0)
+load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, 0)
 
 
 ########## insert into col 3
 
-loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 3, 0)
+load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 3, 0)
 
 
 
@@ -77,15 +77,15 @@ Z <- matrix(1:tau, tau, n)
 
 ######### lag -1 Z
 
-loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, -1)
+load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, -1)
 
 ######### lag 0 Z -- default
 
-loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, 0)
+load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, 0)
 
 ######### lag +1 Z
 
-loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, +1)
+load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, +1)
 
 
 
@@ -94,7 +94,7 @@ loadHst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, +1)
 ## The function is currently defined as
 function (Z, Hst.ls.Z, xwhich, rgr.lags = c(0)) 
 {
-	tau <- nrow(Z)
+    tau <- nrow(Z)
     min.ndx <- max(1, -min(rgr.lags) + 1)
     max.ndx <- min(tau, tau - max(rgr.lags))
     for (i in min.ndx:max.ndx) {

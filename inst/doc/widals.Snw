@@ -498,7 +498,7 @@ for(tt in 1:nrow(Z0.hat)) {
     points(locs0[ , c(2,1)], cex=1.14,  col=this.color, pch=19 )
     #points(locs[ , c(2,1)], cex=Z[tt,] / 30, col="red")
     legend(-116, 40, legend=rev(xleg.vals), fill=FALSE, col=rev(xleg.cols), 
-    border=NA, bty="n", text.col=rev(xleg.cols), text.font=2)
+    border=NA, bty="n", text.col=rev(xleg.cols))
 	Sys.sleep(0.1)
 }
 @
@@ -520,7 +520,7 @@ this.color <- xcol.vec[ this.zvec ]
 points(locs0[ , c(2,1)], cex=1.14,  col=this.color, pch=19 )
 #points(locs[ , c(2,1)], cex=Z[tt,] / 30, col="red")
 legend(-116, 40, legend=rev(xleg.vals), fill=FALSE, col=rev(xleg.cols), border=NA, 
-bty="n", text.col=rev(xleg.cols), text.font=2)
+bty="n", text.col=rev(xleg.cols))
 @
 \end{minipage}
 
@@ -530,7 +530,7 @@ bty="n", text.col=rev(xleg.cols), text.font=2)
 
 
 
-\section{Final Thoughts}
+%\section{Final Thoughts}
 
 %\cite{Wasserman}
 

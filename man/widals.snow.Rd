@@ -8,7 +8,8 @@ Fit WIDALS
 Locate the WIDALS hyperparameters
 }
 \usage{
-widals.snow(j, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = 0, geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16)
+widals.snow(j, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = 0, 
+geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -94,7 +95,10 @@ Hst.ls.all <- list()
 for(i in 1:tau) { Hst.ls.all[[i]] <- matrix(rnorm(n.all*2), nrow=n.all) }
 
 Hst.combined <- list()
-for(i in 1:tau) { Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, ncol=ncol(Ht), byrow=TRUE), Hst.ls.all[[i]] ) }
+for(i in 1:tau) { 
+    Hst.combined[[i]] <- cbind( Hs.all, matrix(Ht[i, ], nrow=n.all, ncol=ncol(Ht), 
+    byrow=TRUE), Hst.ls.all[[i]] ) 
+}
 
 locs.all <- cbind(runif(n.all, -1, 1), runif(n.all, -1, 1))
 D.mx.all <- distance(locs.all, locs.all, FALSE)
@@ -126,7 +130,8 @@ b.lag <- 0
 
 GP <- c(1/8, 1/12, 5, 0, 1)
 GP.mx <- matrix(GP, ncol=length(GP))
-Zwid <- widals.snow(j=1, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = cv, geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16) 
+Zwid <- widals.snow(j=1, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = cv, 
+geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16) 
 
 errs.sq <- (Z - Zwid)^2
 sqrt( mean(errs.sq[test.rng, ]) )
@@ -142,7 +147,8 @@ b.lag <- -1
 
 GP <- c(1/8, 1/12, 5, 0, 1)
 GP.mx <- matrix(GP, ncol=length(GP))
-Zwid <- widals.snow(j=1, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = cv, geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16) 
+Zwid <- widals.snow(j=1, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv = cv, 
+geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16) 
 
 errs.sq <- (Z - Zwid)^2
 sqrt( mean(errs.sq[test.rng, ]) )

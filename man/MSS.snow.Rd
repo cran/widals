@@ -90,11 +90,13 @@ locs.all <- cbind(runif(n.all, -1, 1), runif(n.all, -1, 1)) #### random location
 
 D.mx <- distance(locs.all, locs.all, FALSE) #### distance matrix
 
-R.all <- exp(-d.alpha*D.mx) + diag(sigma2, n.all) #### create measurement variance using distance and covariogram
+#### create measurement variance using distance and covariogram
+R.all <- exp(-d.alpha*D.mx) + diag(sigma2, n.all) 
 
 Hs.all <- matrix(1, n.all, 1) #### constant mean function
 
-xsssim <- SS.sim(F=F, H=Hs.all, Q=Q, R=R.all, length.out=tau, beta0=0) ##### use SSsimple to simulate system
+##### use SSsimple to simulate system
+xsssim <- SS.sim(F=F, H=Hs.all, Q=Q, R=R.all, length.out=tau, beta0=0)
 
 Z.all <- xsssim$Z ###### system observation matrix
 
@@ -108,8 +110,10 @@ ndx.support <- I(1:n.all)[ -ndx.interp ] ##### support sites
 
 
 
-####################################### what follows are important assignments, since MSS.snow and the four helper functions
-####################################### will look for these in the Global Environment to commence fitting the model (as noted in Details above)
+########### what follows are important assignments, 
+########### since MSS.snow and the four helper functions
+########### will look for these in the Global Environment 
+########### to commence fitting the model (as noted in Details above)
 train.rng <- 30:(tau) ; test.rng <- train.rng
 
 Z <- Z.all[ , ndx.support ] 
@@ -136,12 +140,15 @@ rgr.lower.limit <- 10^(-7) ; d.alpha.lower.limit <- 10^(-3) ; rho.upper.limit <-
 sfInit(TRUE, cpus=2)
 
 
-######## now, finally, search for best fit over support -- note that p.ndx.ls and f.d are produced inside fun.load.widals.a()
+######## now, finally, search for best fit over support
+######## Note that p.ndx.ls and f.d are produced inside fun.load.widals.a()
 MSS.snow(fun.load.widals.a, NA, p.ndx.ls, f.d, matrix(1/10, 10, length(GP)), 10, 7)
 sfStop()
 
-######## we can use these hyperparameters to interpolate to the deliberately removed sites, and measure MSE, RMSE
-Z0.hat <- widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, Hs0=Hs.all[ ndx.interp, , drop=FALSE ], Hst0.ls=NULL, locs0=locs.all[ ndx.interp, , drop=FALSE],
+######## we can use these hyperparameters to interpolate to the 
+######## deliberately removed sites, and measure MSE, RMSE
+Z0.hat <- widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, Hs0=Hs.all[ ndx.interp, , drop=FALSE ], 
+Hst0.ls=NULL, locs0=locs.all[ ndx.interp, , drop=FALSE],
 geodesic = xgeodesic, wrap.around = NULL, GP, stnd.d = stnd.d, ltco = ltco)
 
 resids.wid <- ( Z.all[ , ndx.interp ] - Z0.hat )
@@ -158,7 +165,8 @@ sqrt(mse.wid)
 Z.all <- xsssim$Z
 Z.missing <- Z.all
 
-Z.na.all <- matrix( sample(c(TRUE, FALSE), size=n.all*tau, prob=c(0.01, 0.99), replace=TRUE), tau, n.all)
+Z.na.all <- matrix( sample(c(TRUE, FALSE), size=n.all*tau, prob=c(0.01, 0.99), replace=TRUE), 
+tau, n.all)
 Z.missing[ Z.na.all ] <- NA
 
 
@@ -186,7 +194,8 @@ run.parallel <- TRUE
 
 sfInit(TRUE, cpus=2)
 
-MSS.snow(fun.load.widals.fill, NA, p.ndx.ls, f.d, seq(2, 0.01, length=10)*matrix(1/10, 10, length(GP)), 10, 7, X=X)
+MSS.snow(fun.load.widals.fill, NA, p.ndx.ls, f.d, 
+seq(2, 0.01, length=10)*matrix(1/10, 10, length(GP)), 10, 7, X=X)
 sfStop()
 
 sqrt(mean(( (Z.all[train.rng, ] - Z.fill[train.rng, ])^2 )[ Z.na[ train.rng, ] ]))
@@ -208,12 +217,15 @@ GP <- c(1/10, 1) ### -- initial hyperparameter values
 sfInit(TRUE, cpus=2)
 
 
-######## now, finally, search for best fit over support -- note that p.ndx.ls and f.d are produced inside fun.load.widals.a()
+######## now, finally, search for best fit over support
+######## Note that p.ndx.ls and f.d are produced inside fun.load.widals.a()
 MSS.snow(fun.load.hals.a, NA, p.ndx.ls, f.d, matrix(1/10, 10, length(GP)), 10, 7)
 sfStop()
 
-######## we can use these hyperparameters to interpolate to the deliberately removed sites, and measure MSE, RMSE
-hals.obj <- H.als.b(Z, Hs, Ht, Hst.ls, rho=GP[1], reg=GP[2], b.lag = b.lag, Hs0 = Hs.all[ ndx.interp, , drop=FALSE ], Ht0 = NULL, Hst0.ls = NULL)
+######## we can use these hyperparameters to interpolate to the deliberately removed sites, 
+######## and measure MSE, RMSE
+hals.obj <- H.als.b(Z, Hs, Ht, Hst.ls, rho=GP[1], reg=GP[2], b.lag = b.lag, 
+Hs0 = Hs.all[ ndx.interp, , drop=FALSE ], Ht0 = NULL, Hst0.ls = NULL)
 Z0.hat <- hals.obj$Z0.hat
 
 resids.als <- ( Z.all[ , ndx.interp ] - Z0.hat )
@@ -228,7 +240,8 @@ Z.all <- xsssim$Z
 Z.missing <- Z.all
 
 set.seed(99)
-Z.na.all <- matrix( sample(c(TRUE, FALSE), size=n.all*tau, prob=c(0.03, 0.97), replace=TRUE), tau, n.all)
+Z.na.all <- matrix( sample(c(TRUE, FALSE), size=n.all*tau, prob=c(0.03, 0.97), replace=TRUE), 
+tau, n.all)
 Z.missing[ Z.na.all ] <- NA
 
 
@@ -243,7 +256,8 @@ Hs <- Hs.all
 GP <- c(1/10, 1) ### -- initial hyperparameter values
 
 sfInit(TRUE, cpus=2)
-MSS.snow(fun.load.hals.fill, NA, p.ndx.ls, f.d, seq(3, 0.01, length=10)*matrix(1, 10, length(GP)), 10, 7, X=X)
+MSS.snow(fun.load.hals.fill, NA, p.ndx.ls, f.d, 
+seq(3, 0.01, length=10)*matrix(1, 10, length(GP)), 10, 7, X=X)
 
 
 sqrt(mean(( (Z.all[train.rng, ] - Z.fill[train.rng, ])^2 )[ Z.na[ train.rng, ] ]))

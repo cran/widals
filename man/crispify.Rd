@@ -8,7 +8,8 @@ Observation-Space Stochastic Correction
 Improve observation-space predictions using 'left over' spacial correlation between model residuals
 }
 \usage{
-crispify(locs1, locs2, Z.delta, z.lags.vec, geodesic, alpha, flatten, self.refs, lags, stnd.d = FALSE, log10cutoff = -16)
+crispify(locs1, locs2, Z.delta, z.lags.vec, geodesic, alpha, flatten, self.refs, 
+lags, stnd.d = FALSE, log10cutoff = -16)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -87,9 +88,14 @@ n.all <- 14 ##### number of spacial locations
 set.seed(9999)
 locs.all <- cbind(runif(n.all, -1, 1), runif(n.all, -1, 1)) #### random location of sensors
 D.mx <- distance(locs.all, locs.all, FALSE) #### distance matrix
-R.all <- exp(-d.alpha*D.mx) + diag(sigma2, n.all) #### create measurement variance using distance and covariogram
+
+#### create measurement variance using distance and covariogram
+R.all <- exp(-d.alpha*D.mx) + diag(sigma2, n.all)
+
 Hs.all <- matrix(1, n.all, 1) #### constant mean function
-xsssim <- SS.sim(F=F, H=Hs.all, Q=Q, R=R.all, length.out=tau, beta0=0) ##### use SSsimple to simulate system
+
+##### use SSsimple to simulate system
+xsssim <- SS.sim(F=F, H=Hs.all, Q=Q, R=R.all, length.out=tau, beta0=0)
 Z.all <- xsssim$Z ###### system observation matrix
 
 
@@ -105,7 +111,9 @@ z.lags.vec <- rep(0, n.all)
 geodesic <- FALSE
 alpha <- 5
 flatten <- 1
-self.refs <- 0 #### emmulate cross-validation, i.e., don't use observed site values to predict themselves (zero-based)
+
+## emmulate cross-validation, i.e., don't use observed site values to predict themselves (zero-based)
+self.refs <- 0 
 lags <- 0
 
 locs1 <- cbind(locs.all, rep(0, n.all))
