@@ -1,0 +1,3 @@
+useDynLib(widals, .registration=TRUE)
+exportPattern("^[[:alpha:]]+")
+exportPattern("^[^\\.]")
