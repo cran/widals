@@ -19,13 +19,13 @@ Index used by \code{\link{snowfall}}.  A scalar integer.  Which row of \code{GP.
 Data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates.  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates.  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates.  An \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates.  An \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{Hst.ls}{
-Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{pst} numeric matrix.
+Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{p_st} numeric matrix.
 }
   \item{b.lag}{
 ALS lag.  A scalar integer, typically -1 (\emph{a-prior}), or 0 (\emph{a-posteriori}).
@@ -63,6 +63,8 @@ A \eqn{\tau} x \eqn{n} numeric matrix.  The ALS predictions of \code{Z}.
 \examples{
 
 set.seed(9999)
+
+library(SSsimple)
 
 tau <- 280
 n.all <- 35

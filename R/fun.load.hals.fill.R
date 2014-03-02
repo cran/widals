@@ -1,6 +1,9 @@
 fun.load.hals.fill <-
 function() {
     
+    
+    xenvr <- as.environment(1)
+    
     if( run.parallel ) {
         
         sfExport("Z", "Hs", "Ht", "Hst.ls", "b.lag", "train.rng", "test.rng", "Z.na")
@@ -10,10 +13,10 @@ function() {
     }
     
     p.ndx.ls <- list( c(1,2) )
-    assign( "p.ndx.ls", p.ndx.ls, pos=globalenv() )
+    assign( "p.ndx.ls", p.ndx.ls, pos=xenvr )
     
     f.d <- list( dlog.norm, dlog.norm, dlog.norm, dlog.norm, dlog.norm )
-    assign( "f.d", f.d, pos=globalenv() )
+    assign( "f.d", f.d, pos=xenvr )
     
     
     FUN.MH <- function(jj, GP.mx, X) {
@@ -29,7 +32,7 @@ function() {
     }
 
 
-    assign( "FUN.MH", FUN.MH, pos=globalenv() )
+    assign( "FUN.MH", FUN.MH, pos=xenvr )
     
     #FUN.GP <- NULL
     
@@ -43,7 +46,7 @@ function() {
         return(GP.mx)
     }
 
-    assign( "FUN.GP", FUN.GP, pos=globalenv() )
+    assign( "FUN.GP", FUN.GP, pos=xenvr )
     
     
     FUN.I <- function(envmh, X) {
@@ -53,7 +56,7 @@ function() {
         ##if( min(Z, na.rm=TRUE) >= 0 ) { Z.als[ Z.als < 0 ] <- 0 } ############ DZ EDIT
         
         
-        assign( "Z.als", Z.als, envir=globalenv() )
+        assign( "Z.als", Z.als, envir=xenvr )
         Z.als <- Z.clean.up(Z.als)
         
         
@@ -65,21 +68,21 @@ function() {
         
         return(X)
     }
-    assign( "FUN.I", FUN.I, pos=globalenv() )
+    assign( "FUN.I", FUN.I, pos=xenvr )
     
     
     
     FUN.EXIT <- function(envmh, X) {
         
         our.cost <- envmh$current.best
-        assign( "our.cost", our.cost, pos=globalenv() )
+        assign( "our.cost", our.cost, pos=xenvr )
         
-        assign( "Z.fill", X$Z.fill, envir=globalenv() )
-        assign( "GP", envmh$GP, pos=globalenv() )
+        assign( "Z.fill", X$Z.fill, envir=xenvr )
+        assign( "GP", envmh$GP, pos=xenvr )
         cat( paste( "GP <- c(", paste(format(envmh$GP,digits=5), collapse=", "), ") ### ", format(our.cost, width=6), "\n", sep="" ) )
         
     }
     
-    assign( "FUN.EXIT", FUN.EXIT, pos=globalenv() )
+    assign( "FUN.EXIT", FUN.EXIT, pos=xenvr )
     
 }

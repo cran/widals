@@ -13,10 +13,10 @@ stnd.Hs(Hs, Hs0 = NULL, intercept = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hs}{
-Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Hs0}{
-Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{ps} numeric matrix.
+Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{p_s} numeric matrix.
 }
   \item{intercept}{
 Include intercept term?  Boolean.
@@ -30,8 +30,8 @@ Include intercept term?  Boolean.
 
 \value{
 A named list.
-\item{sHs}{An \eqn{n} x \eqn{ps} numeric matrix.}
-\item{sHs0}{An \eqn{n}* x \eqn{ps} numeric matrix.}
+\item{sHs}{An \eqn{n} x \eqn{p_s} numeric matrix.}
+\item{sHs0}{An \eqn{n}* x \eqn{p_s} numeric matrix.}
 \item{h.mean}{The covariates' mean over space.}
 \item{h.sd}{The covariates' standard deviation over space.}
 \item{n}{Number of support sites.}

@@ -19,7 +19,7 @@ Observation data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 Missing data indicator.  A \eqn{\tau} x \eqn{n} boolean matrix.
 }
   \item{Hst.ls.Z}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix.
 }
   \item{xwhich}{
 Which column-pair of \code{Hst.ls.Z[[i]]} to insert into the \eqn{i}th row of \code{Z}.  A scalar positive integer.  By 'column-pair', we mean, e.g., a value of 1 will fill columns 1 and 2, a value of 2 will fill columns 3 and 4, a value of 3 will fill columns 5 and 6, etc.
@@ -32,7 +32,7 @@ Temporal lagging of \code{Z}.  A scalar integer.
 This function, along with \code{\link{load.Hst.ls.Z}}, allows the user to convert a set of observations into covariates for another set of observations.  Unlike \code{\link{load.Hst.ls.Z}}, this function \emph{splits} \code{Z} based on the argument \code{Z.na}.  Values associated with \code{FALSE} elements of \code{Z.na} are placed into the first column of the specified column-pair of \code{Hst.ls.Z}, Values associated with \code{TRUE} elements of \code{Z.na} are placed into the second column of the specified column-pair of \code{Hst.ls.Z} (all other values in in the specified column-pair of \code{Hst.ls.Z} are zeroed).
 }
 \value{
-An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{pst} matrix.
+An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{p_st} matrix.
 }
 
 %\references{

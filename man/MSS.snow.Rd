@@ -105,7 +105,11 @@ Z.all <- xsssim$Z ###### system observation matrix
 ########### now make assignments required by MSS.snow
 	
 set.seed(9999)
-ndx.interp <- sample(1:n.all, size=5) ##### randomly remove five sites to serve as interpolation points
+
+library(SSsimple)
+
+##### randomly remove five sites to serve as interpolation points
+ndx.interp <- sample(1:n.all, size=5) 
 ndx.support <- I(1:n.all)[ -ndx.interp ] ##### support sites
 
 
@@ -147,7 +151,8 @@ sfStop()
 
 ######## we can use these hyperparameters to interpolate to the 
 ######## deliberately removed sites, and measure MSE, RMSE
-Z0.hat <- widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, Hs0=Hs.all[ ndx.interp, , drop=FALSE ], 
+Z0.hat <- widals.predict(Z, Hs, Ht, Hst.ls, locs, lags, b.lag, 
+Hs0=Hs.all[ ndx.interp, , drop=FALSE ], 
 Hst0.ls=NULL, locs0=locs.all[ ndx.interp, , drop=FALSE],
 geodesic = xgeodesic, wrap.around = NULL, GP, stnd.d = stnd.d, ltco = ltco)
 

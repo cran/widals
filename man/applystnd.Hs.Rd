@@ -13,7 +13,7 @@ applystnd.Hs(Hs0, x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hs0}{
-Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{ps} numeric matrix.
+Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{p_s} numeric matrix.
 }
   \item{x}{
 Spacial standardization object, as created by \code{\link{stnd.Hs}}.
@@ -25,7 +25,7 @@ Spacial standardization object, as created by \code{\link{stnd.Hs}}.
 %}
 
 \value{
-An \eqn{n}* x \eqn{ps} matrix.
+An \eqn{n}* x \eqn{p_s} matrix.
 }
 
 %\references{

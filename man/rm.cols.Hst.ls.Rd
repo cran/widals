@@ -13,7 +13,7 @@ rm.cols.Hst.ls(Hst.ls, rm.col.ndx)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls}{
-Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix. 
 }
   \item{rm.col.ndx}{
 Which columns of \code{Hst.ls} to remove.  A positive scalar integer.
@@ -26,7 +26,7 @@ Which columns of \code{Hst.ls} to remove.  A positive scalar integer.
 
 
 \value{
-An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{pst - prm} matrix, where \eqn{prm} is the length of \code{rm.col.ndx}.
+An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{p_st - p_rm} matrix, where \eqn{p_rm} is the length of \code{rm.col.ndx}.
 }
 
 %\references{

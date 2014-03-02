@@ -13,20 +13,20 @@ Hst.sumup(Hst.ls, Hs = NULL, Ht = NULL)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls}{
-Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{pst} numeric matrix.
+Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{p_st} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates.  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates.  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates.  An \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates.  An \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
 }
 \details{
 Important: The order of the arguments in this function is NOT the same as in the returned covariance matrix.  The order in the covariance matrix is the same as in other functions in this package:  \code{Hs}, \code{Ht}, \code{Hst.ls}.
 }
 \value{
-A \eqn{(ps+pt+pst)} x \eqn{(ps+pt+pst)} numeric, symmetrix, non-negative definite matrix.
+A \eqn{(p_s+p_t+p_st)} x \eqn{(p_s+p_t+p_st)} numeric, symmetrix, non-negative definite matrix.
 }
 
 %\references{

@@ -13,7 +13,7 @@ unload.Hst.ls(Hst.ls, which.col, rgr.lags)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{pst} numeric matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{p_st} numeric matrix.
 }
   \item{which.col}{
 Which column of \code{Hst.ls[[i]]} to insert into the \eqn{i}th row of \code{Z}.  A scalar positive integer. 

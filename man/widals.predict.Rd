@@ -17,13 +17,13 @@ geodesic = FALSE, wrap.around = NULL, GP, stnd.d = FALSE, ltco = -16)
 Space-time data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{Hst.ls}{
-Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{pst} numeric matrix.
+Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{p_st} numeric matrix.
 }
   \item{locs}{
 Locations of supporting sites.  An \emph{n} x 2 numeric matrix, first column is spacial \eqn{x}, second column is spacial \eqn{y}.  If the \code{geodesic} is \code{TRUE}, make sure latitude is in the first column.
@@ -35,10 +35,10 @@ Temporal lags for stochastic smoothing.  An integer vector or scalar.  E.g., if 
 ALS lag.  A scalar integer, typically -1 (\emph{a-prior}), or 0 (\emph{a-posteriori}).
 }
   \item{Hs0}{
-Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{ps} matrix, or \code{NULL}.
+Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{p_s} matrix, or \code{NULL}.
 }
   \item{Hst0.ls}{
-Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix.
 }
   \item{locs0}{
 Locations of interpolation sites.  An \emph{n}* x 2 numeric matrix.  See \code{locs} argument above.
@@ -92,6 +92,8 @@ A \eqn{\tau} x \eqn{n}* matrix.  The WIDALS predictions at \code{locs0}.
 #### similar to example provided in H.als.b.
 	
 set.seed(99999)
+
+library(SSsimple)
 
 tau <- 70
 n.all <- 14

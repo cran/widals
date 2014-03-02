@@ -13,7 +13,7 @@ subsetsites.Hst.ls(Hst.ls, xmask)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{pst} numeric matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{p_st} numeric matrix. 
 }
   \item{xmask}{
 Which sites to remove from \code{Hst.ls}.  A boolean vector of length \eqn{n}, or a vector of spacial indices.
@@ -25,7 +25,7 @@ Which sites to remove from \code{Hst.ls}.  A boolean vector of length \eqn{n}, o
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-Space-time covariates.  A list of length \eqn{\tau}, each element a \eqn{c} x \eqn{pst} numeric matrix, where \eqn{c} is the number of \code{TRUE}'s in boolean \code{xmask}, or length of index \code{xmask}.
+Space-time covariates.  A list of length \eqn{\tau}, each element a \eqn{c} x \eqn{p_st} numeric matrix, where \eqn{c} is the number of \code{TRUE}'s in boolean \code{xmask}, or length of index \code{xmask}.
 }
 
 %\references{

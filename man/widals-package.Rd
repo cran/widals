@@ -12,8 +12,8 @@ Fit, forecast, predict massive spacio-temporal data
 \tabular{ll}{
 Package: \tab widals\cr
 Type: \tab Package\cr
-Version: \tab 0.5.1\cr
-Date: \tab 2012-11-22\cr
+Version: \tab 0.5.4\cr
+Date: \tab 2014-03-02\cr
 License: \tab GPL (>=2)\cr
 }
 The two essential functions are \code{\link{widals.snow}} and \code{\link{widals.predict}}, both contain an Adaptive Least Squares (ALS) prediction stage and complementary 'stochastic adjustment' stage.  The function \code{\link{H.als.b}} solely fits with ALS.

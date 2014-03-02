@@ -13,10 +13,10 @@ stnd.Hst.ls(Hst.ls, Hst0.ls = NULL)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls}{
-Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix. 
 }
   \item{Hst0.ls}{
-Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n}* x \eqn{pst} matrix. 
+Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n}* x \eqn{p_st} matrix. 
 }
 }
 
@@ -27,8 +27,8 @@ Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, ea
 
 \value{
 A named list.
-\item{sHst.ls}{A list of length \eqn{\tau}, each element a numeric \eqn{n} x \eqn{pst} matrix.}
-\item{sHst0.ls}{A list of length \eqn{\tau}, each element a \eqn{n}* x \eqn{pst} matrix}
+\item{sHst.ls}{A list of length \eqn{\tau}, each element a numeric \eqn{n} x \eqn{p_st} matrix.}
+\item{sHst0.ls}{A list of length \eqn{\tau}, each element a \eqn{n}* x \eqn{p_st} matrix}
 \item{h.mean}{The covariates' mean over space-time.}
 \item{h.sd}{The covariates' standard deviation over space-time.}
 }

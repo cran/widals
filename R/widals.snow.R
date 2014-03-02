@@ -1,5 +1,8 @@
 widals.snow <-
 function(j, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv=0, geodesic=FALSE, wrap.around=NULL, GP.mx, stnd.d=FALSE, ltco=-16) {
+    
+    xenvr <- as.environment(1)
+    
 	tau <- nrow(Z)
 	n <- ncol(Z)
 	k <- length(lags)
@@ -23,7 +26,7 @@ function(j, rm.ndx, Z, Hs, Ht, Hst.ls, locs, lags, b.lag, cv=0, geodesic=FALSE, 
 	if( cv <= 0 ) {
 		
         Y.als <- H.als.b(Z=Z, Hs=Hs, Ht=Ht, Hst.ls=Hst.ls, rho=rho, reg=reg, b.lag=b.lag, Hs0=NULL, Ht0=NULL, Hst0.ls=NULL)$Z.hat
-		assign( "Y.als", Y.als, pos=.GlobalEnv )
+		assign( "Y.als", Y.als, pos=xenvr )
         
 #yalsp <- als.prepare(NULL, Y.als, lags, Z.na=NULL, tt.rng=1:nrow(Y.als)) #### tt.rng not used
 #rm( Y.als )

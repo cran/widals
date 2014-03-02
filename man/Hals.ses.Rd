@@ -16,13 +16,13 @@ Hals.ses(Z, Hs, Ht, Hst.ls, rho, reg, b.lag, test.rng)
 Space-time data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{Hst.ls}{
-Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix. 
 }
   \item{rho}{
 ALS signal-to-noise ratio (SNR).  A non-negative scalar.
@@ -44,8 +44,8 @@ Temporal test range.  A vector of temporal indices of the model test range.
 
 \value{
 A named list.
-\item{estimates}{A \eqn{ps+pt+pst} x 2 matrix, each row giving the ALS partial slope estimate/prediction at time \eqn{\tau}, and the 'effective standard error (prediction error)' for the partial slope.}
-\item{inv.LHH}{A \eqn{(ps+pt+pst)} x \eqn{(ps+pt+pst)} matrix.  This is the (ALS predicted) covariate precision matrix at time \eqn{\tau}.}
+\item{estimates}{A \eqn{p_s+p_t+p_st} x 2 matrix, each row giving the ALS partial slope estimate/prediction at time \eqn{\tau}, and the 'effective standard error (prediction error)' for the partial slope.}
+\item{inv.LHH}{A \eqn{(p_s+p_t+p_st)} x \eqn{(p_s+p_t+p_st)} matrix.  This is the (ALS predicted) covariate precision matrix at time \eqn{\tau}.}
 \item{ALS.g}{The ALS gain at time \eqn{\tau}.}
 }
 

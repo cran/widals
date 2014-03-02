@@ -1,6 +1,8 @@
 MSS.snow <-
 function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X = NULL)
 {
+    
+    xenvr <- as.environment(1)
     envmh <- environment(NULL)
     GP <- GP
     if(is.function(FUN.source)) {
@@ -59,5 +61,5 @@ function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X
     if (!is.null(FUN.EXIT)) {
         FUN.EXIT(envmh = envmh, X = X)
     }
-    assign("GP", GP, pos = globalenv())
+    assign("GP", GP, pos = xenvr)
 }

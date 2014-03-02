@@ -13,10 +13,10 @@ fuse.Hst.ls(Hst.ls1, Hst.ls2)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst.ls1}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p1} matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_1} matrix. 
 }
   \item{Hst.ls2}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p2} matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_2} matrix. 
 }
 }
 
@@ -26,7 +26,7 @@ Space-time covariates.  A list of length \eqn{\tau}, each element should be a nu
 %}
 
 \value{
-An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{(p1+p2)} matrix.
+An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{(p_1+p_2)} matrix.
 }
 
 

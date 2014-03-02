@@ -16,7 +16,7 @@ dlog.norm(n, center, sd)
 Sample size.  A positive scalar integer.
 }
   \item{center}{
-Exponent of the mean.  A numeric scalar (or vector).
+Exponential of the mean.  A numeric scalar (or vector).
 }
   \item{sd}{
 Standard deviation.  A numeric scalar (or vector).

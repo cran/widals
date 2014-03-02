@@ -23,13 +23,13 @@ A list of vectors of indices to remove for \emph{k}-fold cross-validation.
 Data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates.  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates.  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates.  A \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates.  A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{Hst.ls}{
-Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{pst} numeric matrix.
+Space-time covariates.  A list of length \eqn{\tau}, each element containing a \eqn{n} x \eqn{p_st} numeric matrix.
 }
   \item{locs}{
 Locations of supporting sites.  An \emph{n} x 2 numeric matrix, first column is spacial \eqn{x}, second column is spacial \eqn{y}.  If the \code{geodesic} is \code{TRUE}, make sure latitude is in the first column.
@@ -85,6 +85,8 @@ A \eqn{\tau} x \eqn{n} matrix.  The WIDALS predictions at \code{locs}.
 \examples{
 	
 set.seed(99999)
+
+library(SSsimple)
 
 tau <- 100
 n.all <- 35

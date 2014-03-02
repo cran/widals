@@ -71,7 +71,7 @@ A \eqn{\tau} x \eqn{x} matrix.
 }
 \examples{
 
-######### here's a itty-bitty example
+######### here's an itty-bitty example
 
 ######### simulate itty-bitty data
 
@@ -86,6 +86,9 @@ Q <- 0
 n.all <- 14 ##### number of spacial locations
 
 set.seed(9999)
+
+library(SSsimple)
+
 locs.all <- cbind(runif(n.all, -1, 1), runif(n.all, -1, 1)) #### random location of sensors
 D.mx <- distance(locs.all, locs.all, FALSE) #### distance matrix
 
@@ -112,7 +115,8 @@ geodesic <- FALSE
 alpha <- 5
 flatten <- 1
 
-## emmulate cross-validation, i.e., don't use observed site values to predict themselves (zero-based)
+## emmulate cross-validation, i.e., 
+## don't use observed site values to predict themselves (zero-based)
 self.refs <- 0 
 lags <- 0
 

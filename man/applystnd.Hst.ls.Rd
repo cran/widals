@@ -13,7 +13,7 @@ applystnd.Hst.ls(Hst0.ls, x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Hst0.ls}{
-Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a \eqn{n}* x \eqn{pst} numeric matrix. 
+Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a \eqn{n}* x \eqn{p_st} numeric matrix.
 }
   \item{x}{
 Space-time standardization object, as created by \code{\link{stnd.Hst.ls}}.
@@ -25,7 +25,7 @@ Space-time standardization object, as created by \code{\link{stnd.Hst.ls}}.
 %}
 
 \value{
-	An unnamed list of length \eqn{\tau}, each element a \eqn{n}* x \eqn{pst} matrix. 
+	An unnamed list of length \eqn{\tau}, each element a \eqn{n}* x \eqn{p_st} numeric matrix. 
 }
 
 %\references{

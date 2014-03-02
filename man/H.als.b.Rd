@@ -16,13 +16,13 @@ H.als.b(Z, Hs, Ht, Hst.ls, rho, reg, b.lag = -1, Hs0 = NULL, Ht0 = NULL, Hst0.ls
 Space-time data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hs}{
-Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{ps} numeric matrix.
+Spacial covariates (of supporting sites).  An \eqn{n} x \eqn{p_s} numeric matrix.
 }
   \item{Ht}{
-Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{Hst.ls}{
-Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{pst} numeric matrix. 
+Space-time covariates (of supporting sites).  A list of length \eqn{\tau}, each element should be a \eqn{n} x \eqn{p_st} numeric matrix. 
 }
   \item{rho}{
 ALS signal-to-noise ratio (SNR).  A non-negative scalar.
@@ -34,13 +34,13 @@ ALS regularizer.  A non-negative scalar.
 ALS lag.  A scalar integer, typically -1 (\emph{a-prior}), or 0 (\emph{a-posteriori}).
 }
   \item{Hs0}{
-Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{ps} matrix, or \code{NULL}.
+Spacial covariates (of interpolation sites).  An \eqn{n}* x \eqn{p_s} matrix, or \code{NULL}.
 }
   \item{Ht0}{
-Temporal covariates (of interpolation sites).  A \eqn{\tau} x \eqn{pt} matrix, or \code{NULL}.  If not \code{NULL}, I cannot imagine a scenario where this shouldn't be \code{Ht}.
+Temporal covariates (of interpolation sites).  A \eqn{\tau} x \eqn{p_t} matrix, or \code{NULL}.  If not \code{NULL}, I cannot imagine a scenario where this shouldn't be \code{Ht}.
 }
   \item{Hst0.ls}{
-Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix. 
 }
 }
 
@@ -51,9 +51,9 @@ Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, ea
 \value{
 A named list.
 \item{Z.hat}{A \eqn{\tau} x \emph{n} matrix, the \emph{i}th row of which is the ALS prediction of the supporting sites at time \emph{i}.}
-\item{B}{A \eqn{\tau} x \eqn{(ps+pt+pst)} matrix, the \emph{i}th row of which is the ALS state (partial slopes) prediction at time \emph{i}.}
+\item{B}{A \eqn{\tau} x \eqn{(p_s+p_t+p_st)} matrix, the \emph{i}th row of which is the ALS state (partial slopes) prediction at time \emph{i}.}
 \item{Z0.hat}{A \eqn{\tau} x \emph{n}* matrix, the \emph{i}th row of which is the ALS prediction of the interpolation sites at time \emph{i}.}
-\item{inv.LHH}{A \eqn{(ps+pt+pst)} x \eqn{(ps+pt+pst)} matrix.  This is the (ALS predicted) covariate precision matrix at time \eqn{\tau}.}
+\item{inv.LHH}{A \eqn{(p_s+p_t+p_st)} x \eqn{(p_s+p_t+p_st)} matrix.  This is the (ALS predicted) covariate precision matrix at time \eqn{\tau}.}
 \item{ALS.g}{The ALS gain at time \eqn{\tau}.}
 }
 
@@ -78,6 +78,8 @@ A named list.
 \examples{
 
 set.seed(99999)
+
+library(SSsimple)
 
 tau <- 70
 n.all <- 14
@@ -123,7 +125,8 @@ errs.sq <- (Z0 - xALS$Z0.hat)^2
 sqrt( mean(errs.sq[test.rng, ]) )
 
 
-####################### calculate the 'effective standard errors' (actually 'effective prediction errors') of the ALS partial slopes
+################ calculate the 'effective standard errors' (actually 'effective prediction
+################ errors') of the ALS partial slopes
 rmse <- sqrt(mean((Z[test.rng, ] - xALS$Z.hat[test.rng, ])^2))
 rmse
 als.se <- rmse * sqrt(xALS$ALS.g) * sqrt(diag(xALS$inv.LHH))

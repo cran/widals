@@ -13,7 +13,7 @@ stnd.Ht(Ht, n)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Ht}{
-Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{pt} numeric matrix.
+Temporal covariates (of supporting sites).  A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
   \item{n}{
 Number of sites.  A positive scalar integer.
@@ -25,7 +25,7 @@ Number of sites.  A positive scalar integer.
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-A \eqn{\tau} x \eqn{pt} numeric matrix.
+A \eqn{\tau} x \eqn{p_t} numeric matrix.
 }
 
 

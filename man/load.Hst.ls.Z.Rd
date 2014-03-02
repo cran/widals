@@ -16,7 +16,7 @@ load.Hst.ls.Z(Z, Hst.ls.Z, xwhich, rgr.lags = c(0))
 Observation data.  A \eqn{\tau} x \eqn{n} numeric matrix.
 }
   \item{Hst.ls.Z}{
-Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{pst} matrix. 
+Space-time covariates.  A list of length \eqn{\tau}, each element should be a numeric \eqn{n} x \eqn{p_st} matrix. 
 }
   \item{xwhich}{
 Which column of \code{Hst.ls.Z[[i]]} to insert into the \eqn{i}th row of \code{Z}.  A scalar positive integer.
@@ -31,7 +31,7 @@ This function, along with \code{\link{load.Hst.ls.2Zs}}, allows the user to conv
 }
 
 \value{
-An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{pst} matrix.
+An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \eqn{p_st} matrix.
 }
 
 %\references{

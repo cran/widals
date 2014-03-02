@@ -25,7 +25,7 @@ The name of the object produced by this function is commonly \code{rm.ndx} in th
 In this package \code{rm.ndx} is used by \code{\link{Hals.fastcv.snow}} and \code{\link{widals.snow}}; however, creating this object as a list using this function is only necessary when using \code{\link{widals.snow}} with \code{cv=2} (i.e., 'true' cross-validation).
 }
 \value{
-An unnamed list of integer vectors.
+An unnamed list of integer (>0) vectors.
 }
 
 %\references{
