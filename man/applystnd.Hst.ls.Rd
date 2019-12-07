@@ -18,6 +18,7 @@ Space-time covariates (of interpolation sites).  A list of length \eqn{\tau}, ea
   \item{x}{
 Space-time standardization object, as created by \code{\link{stnd.Hst.ls}}.
 }
+
 }
 
 %\details{
@@ -87,5 +88,5 @@ function (Hst0.ls, x)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

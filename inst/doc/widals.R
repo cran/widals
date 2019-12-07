@@ -1,7 +1,7 @@
 ### R code from vignette source 'widals.Snw'
 
 ###################################################
-### code chunk number 1: widals.Snw:153-156
+### code chunk number 1: widals.Snw:151-154
 ###################################################
 options(width=49)
 options(prompt=" ")
@@ -12,6 +12,8 @@ options(continue="   ")
 ### code chunk number 2: b1
 ###################################################
 options(stringsAsFactors=FALSE)
+
+library(snowfall)
 
 k.cpus <- 2 #### set the number of cpus for snowfall
 

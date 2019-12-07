@@ -32,7 +32,7 @@ List of 5
 The Ozone data originates from the California Air Resources Board (CARB).  The interpolation grid elevations originate from the Google Elevation API.
 }
 \references{
-The O3 data comes from the DVD-ROM offered gratis by CARB: \url{http://www.arb.ca.gov/aqd/aqdcd/aqdcd.htm}
+The O3 data comes from the California Air Resources Board (CARB).
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{

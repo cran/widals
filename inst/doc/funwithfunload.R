@@ -1,7 +1,7 @@
 ### R code from vignette source 'funwithfunload.Snw'
 
 ###################################################
-### code chunk number 1: funwithfunload.Snw:129-132
+### code chunk number 1: funwithfunload.Snw:127-130
 ###################################################
 options(width=49)
 options(prompt=" ")
@@ -9,9 +9,11 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 2: funwithfunload.Snw:137-181 (eval = FALSE)
+### code chunk number 2: funwithfunload.Snw:135-181 (eval = FALSE)
 ###################################################
 ## options(stringsAsFactors=FALSE)
+## 
+## library(snowfall)
 ## 
 ## k.cpus <- 2 #### set the number of cpus for snowfall
 ## 
@@ -58,7 +60,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 3: funwithfunload.Snw:188-216 (eval = FALSE)
+### code chunk number 3: funwithfunload.Snw:188-218 (eval = FALSE)
 ###################################################
 ## 
 ## 
@@ -80,6 +82,8 @@ options(continue="   ")
 ## ltco <- -10
 ## stnd.d <- TRUE
 ## 
+## FUN.GP <- NULL
+## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source()
 ## 
@@ -91,7 +95,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 4: funwithfunload.Snw:222-245 (eval = FALSE)
+### code chunk number 4: funwithfunload.Snw:224-249 (eval = FALSE)
 ###################################################
 ## k.glob <- 10
 ## 
@@ -108,6 +112,8 @@ options(continue="   ")
 ## sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
 ## ltco <- -10
 ## 
+## FUN.GP <- NULL
+## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source()
 ## 
@@ -119,7 +125,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 5: funwithfunload.Snw:256-274 (eval = FALSE)
+### code chunk number 5: funwithfunload.Snw:260-278 (eval = FALSE)
 ###################################################
 ## library(LatticeKrig)
 ## 
@@ -142,7 +148,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 6: funwithfunload.Snw:286-298 (eval = FALSE)
+### code chunk number 6: funwithfunload.Snw:290-302 (eval = FALSE)
 ###################################################
 ## XA.Hs <- cbind(rep(1,n), hsa.all)
 ## XA.Ht <- Ht.original
@@ -159,7 +165,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 7: funwithfunload.Snw:309-411 (eval = FALSE)
+### code chunk number 7: funwithfunload.Snw:313-415 (eval = FALSE)
 ###################################################
 ## fun.load.widals.ab <- function() {
 ##      
@@ -266,7 +272,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 8: funwithfunload.Snw:419-443 (eval = FALSE)
+### code chunk number 8: funwithfunload.Snw:423-449 (eval = FALSE)
 ###################################################
 ## GP <- c(1/10, 1, 1/10, 1,      5, 3, 1)
 ## sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
@@ -283,6 +289,8 @@ options(continue="   ")
 ## rgr.lower.limit <- 10^(-7)
 ## rgr.upper.limit <- 500
 ## 
+## FUN.GP <- NULL
+## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source <- fun.load.widals.ab
 ## FUN.source()
@@ -295,7 +303,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 9: funwithfunload.Snw:450-473 (eval = FALSE)
+### code chunk number 9: funwithfunload.Snw:456-481 (eval = FALSE)
 ###################################################
 ## GP <- c(1/10, 1, 1/10, 1,      0.5, 3, 1)
 ## sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
@@ -312,6 +320,8 @@ options(continue="   ")
 ## rgr.lower.limit <- 10^(-7)
 ## rgr.upper.limit <- 500
 ## 
+## FUN.GP <- NULL
+## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source <- fun.load.widals.ab
 ## FUN.source()
@@ -323,7 +333,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 10: funwithfunload.Snw:501-552 (eval = FALSE)
+### code chunk number 10: funwithfunload.Snw:509-560 (eval = FALSE)
 ###################################################
 ## 
 ## options(stringsAsFactors=FALSE)
@@ -379,7 +389,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 11: funwithfunload.Snw:559-598 (eval = FALSE)
+### code chunk number 11: funwithfunload.Snw:567-608 (eval = FALSE)
 ###################################################
 ## train.rng <- 30:tau
 ## test.rng <- train.rng
@@ -413,6 +423,8 @@ options(continue="   ")
 ## ltco <- -10
 ## stnd.d <- TRUE
 ## 
+## FUN.GP <- NULL
+## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source()
 ## 
@@ -423,7 +435,7 @@ options(continue="   ")
 
 
 ###################################################
-### code chunk number 12: funwithfunload.Snw:610-661 (eval = FALSE)
+### code chunk number 12: funwithfunload.Snw:620-673 (eval = FALSE)
 ###################################################
 ## library(LatticeKrig)
 ## 
@@ -467,6 +479,8 @@ options(continue="   ")
 ## rho.upper.limit <- 100
 ## rgr.lower.limit <- 10^(-7)
 ## rgr.upper.limit <- 100
+## 
+## FUN.GP <- NULL
 ## 
 ## sfInit(TRUE, k.cpus)
 ## FUN.source <- fun.load.widals.ab

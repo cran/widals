@@ -1,8 +1,10 @@
 MSS.snow <-
-function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X = NULL)
-{
+function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X = NULL) {
     
-    xenvr <- as.environment(1)
+
+    run.parallel <- run.parallel
+    sfClusterApplyLB <- sfClusterApplyLB
+    
     envmh <- environment(NULL)
     GP <- GP
     if(is.function(FUN.source)) {
@@ -12,6 +14,12 @@ function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X
             source(FUN.source)
         }
     }
+    
+    FUN.GP <- FUN.GP
+    FUN.MH <- FUN.MH
+    FUN.I <- FUN.I
+    FUN.EXIT <- FUN.EXIT
+    
     if (is.na(current.best)) {
         GP.mx <- matrix(GP, 1, length(GP))
         if (!is.null(FUN.GP)) {
@@ -36,8 +44,7 @@ function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X
                 if (run.parallel) {
                     sfOut <- sfClusterApplyLB(1:n.mh, FUN.MH, GP.mx = GP.mx,
                     X = X)
-                }
-                else {
+                } else {
                     sfOut <- list()
                     for (jj in 1:n.mh) {
                         sfOut[[jj]] <- FUN.MH(jj, GP.mx = GP.mx,
@@ -51,8 +58,15 @@ function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X
                 if (errs[best.ndx] < current.best) {
                     current.best <- errs[best.ndx]
                     GP <- GP.mx[best.ndx, , drop = TRUE]
-                    assign("current.best", current.best, envir = envmh)
-                    assign("current.best.GP", GP, envir = envmh)
+                    
+                    #assign("current.best", current.best, envir = envmh)
+                    #assign("current.best.GP", GP, envir = envmh)
+                    
+                    current.best <<- current.best
+                    
+                    current.best.GP <- GP
+                    current.best.GP <<- current.best.GP
+                    
                     X <- FUN.I(envmh = envmh, X = X)
                 }
             }
@@ -61,5 +75,7 @@ function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X
     if (!is.null(FUN.EXIT)) {
         FUN.EXIT(envmh = envmh, X = X)
     }
-    assign("GP", GP, pos = xenvr)
+    #assign("GP", GP, pos = globalenv())
+    
+    GP <<- GP
 }

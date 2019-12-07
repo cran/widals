@@ -1,6 +1,6 @@
 
 
-%%%%%%%%%%%% cd ~/Files/Creations/R/widals/vignettes ; R CMD Sweave funwithfunload.Snw
+%%%%%%%%%%%% cd ~/Files/Creations/R/widals/inst/doc ; R64 CMD Sweave funwithfunload.Snw
 
 \documentclass[11pt]{article}
 \usepackage{graphicx}
@@ -90,10 +90,8 @@
 
 
 
-%\VignetteIndexEntry{Fun with fun.load}
-%\VignetteDepends{SSsimple}
-%\VignetteDepends{mvtnorm}
-%\VignetteDepends{maps}
+%\VignetteIndexEntry{Package \texttt{widals}: Fun with \texttt{fun.load()}}
+
 
 \begin{document}
 
@@ -136,6 +134,8 @@ options(continue="   ")
 
 <<eval=FALSE, results=hide>>=
 options(stringsAsFactors=FALSE)
+
+library(snowfall)
 
 k.cpus <- 2 #### set the number of cpus for snowfall
 
@@ -206,6 +206,8 @@ sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
 ltco <- -10
 stnd.d <- TRUE
 
+FUN.GP <- NULL
+
 sfInit(TRUE, k.cpus)
 FUN.source()
 
@@ -234,6 +236,8 @@ b.lag <- 0
 
 sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
 ltco <- -10
+
+FUN.GP <- NULL
 
 sfInit(TRUE, k.cpus)
 FUN.source()
@@ -432,6 +436,8 @@ rho.upper.limit <- 100
 rgr.lower.limit <- 10^(-7)
 rgr.upper.limit <- 500
 
+FUN.GP <- NULL
+
 sfInit(TRUE, k.cpus)
 FUN.source <- fun.load.widals.ab
 FUN.source()
@@ -462,6 +468,8 @@ d.alpha.lower.limit <- 0
 rho.upper.limit <- 100
 rgr.lower.limit <- 10^(-7)
 rgr.upper.limit <- 500
+
+FUN.GP <- NULL
 
 sfInit(TRUE, k.cpus)
 FUN.source <- fun.load.widals.ab
@@ -589,6 +597,8 @@ sds.mx <- seq(2, 0.01, length=k.glob) * matrix(1, k.glob, length(GP))
 ltco <- -10
 stnd.d <- TRUE
 
+FUN.GP <- NULL
+
 sfInit(TRUE, k.cpus)
 FUN.source()
 
@@ -650,6 +660,8 @@ d.alpha.lower.limit <- 0
 rho.upper.limit <- 100
 rgr.lower.limit <- 10^(-7)
 rgr.upper.limit <- 100
+
+FUN.GP <- NULL
 
 sfInit(TRUE, k.cpus)
 FUN.source <- fun.load.widals.ab

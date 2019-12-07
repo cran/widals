@@ -44,10 +44,14 @@ Nothing.  The central role of these functions is the creation of four functions 
 
 \examples{
 
+
+
 ### Here's an itty bitty example:
 ### we use stochastic search to find the minimum number in a vector
 ### GP isn't used here, and hence neither are p.ndx.ls nor f.d
 ### however, we still need to create them since MSS.snow requires their existence
+
+\dontrun{
 
 fun.load.simpleExample <- function() {
 
@@ -56,37 +60,47 @@ fun.load.simpleExample <- function() {
     }
     
     p.ndx.ls <- list( c(1) )
-    assign( "p.ndx.ls", p.ndx.ls, pos=globalenv() )
+    
+    p.ndx.ls <<- p.ndx.ls
+    
     f.d <- list( dlog.norm )
-    assign( "f.d", f.d, pos=globalenv() )
+
+    f.d <<- f.d
     
     FUN.MH <- function(jj, GP.mx, X) {
         our.cost <- sample(xx, 1)
     }
-    assign( "FUN.MH", FUN.MH, pos=globalenv() )
+
+    FUN.MH <<- FUN.MH
+    
     
     FUN.GP <- NULL
-    assign( "FUN.GP", FUN.GP, pos=globalenv() )
+    FUN.GP <<- FUN.GP
     
     
     FUN.I <- function(envmh, X) {
         cat( "Hello, I have found an even smaller number in xx ---> ", envmh$current.best, "\n" )
     }
-    assign( "FUN.I", FUN.I, pos=globalenv() )
+    FUN.I <<- FUN.I
     
     FUN.EXIT <- function(envmh, X) {
         cat( "Done",   "\n" )
     }
-    assign( "FUN.EXIT", FUN.EXIT, pos=globalenv() )
+
+    FUN.EXIT <<- FUN.EXIT
+    
 }
 
 xx <- 1:600
 
 GP <- c(1)
-MH.source <- fun.load.simpleExample
 
 run.parallel <- TRUE
 sfInit(TRUE, 2)
+
+MH.source <- fun.load.simpleExample
+MH.source()
+
 MSS.snow(MH.source, Inf, p.ndx.ls, f.d, matrix(1, nrow=28), 28, 7)
 sfStop()
 
@@ -104,23 +118,24 @@ fun.load.simpleExample2 <- function() {
     }
     
     p.ndx.ls <- list( c(1) )
-    assign( "p.ndx.ls", p.ndx.ls, pos=globalenv() )
+    p.ndx.ls <<- p.ndx.ls
+    
     f.d <- list( unif.mh )
-    assign( "f.d", f.d, pos=globalenv() )
+    f.d <<- f.d
     
     FUN.MH <- function(jj, GP.mx, X) {
         our.cost <- sum( ( xx - GP.mx[jj, 1] )^2 )
         return(our.cost)
     }
-    assign( "FUN.MH", FUN.MH, pos=globalenv() )
+    FUN.MH <<- FUN.MH
     
     FUN.GP <- NULL
-    assign( "FUN.GP", FUN.GP, pos=globalenv() )
+    FUN.GP <<-  FUN.GP
     
     FUN.I <- function(envmh, X) {
         cat( "Improvement ---> ", envmh$current.best, " ---- " , envmh$GP, "\n" )
     }
-    assign( "FUN.I", FUN.I, pos=globalenv() )
+    FUN.I <<- FUN.I
     
     FUN.EXIT <- function(envmh, X) {
         our.cost <- envmh$current.best
@@ -128,17 +143,21 @@ fun.load.simpleExample2 <- function() {
         cat( "Done",   "\n" )
         cat( envmh$GP, our.cost, "\n" )
     }
-    assign( "FUN.EXIT", FUN.EXIT, pos=globalenv() )
+    FUN.EXIT <<- FUN.EXIT
+    
 }
 
 ##set.seed(99999)
 xx <- rnorm(300, 5, 10)
 
-GP <- c(10)
-MH.source <- fun.load.simpleExample2
+GP <- c(1)
 
 run.parallel <- TRUE
 sfInit(TRUE, 2)
+
+MH.source <- fun.load.simpleExample2
+MH.source()
+
 MSS.snow(MH.source, Inf, p.ndx.ls, f.d, matrix(1/10, nrow=140, ncol=length(GP)), 140, 14)
 sfStop()
 
@@ -147,9 +166,11 @@ mean(xx)
 
 }
 
+}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
 
 

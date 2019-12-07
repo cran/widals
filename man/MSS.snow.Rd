@@ -71,7 +71,14 @@ Nothing.  After completion, the best hyperparameters, \code{GP}, are assigned to
 ##### simulate a state-space system (using pkg SSsimple)
 
 \dontrun{
-	
+
+### using dontrun because of excessive run time for CRAN submission
+
+set.seed(9999)
+
+library(SSsimple)
+
+
 tau <- 77 #### number of time points
 
 d.alpha <- 2
@@ -104,9 +111,7 @@ Z.all <- xsssim$Z ###### system observation matrix
 	
 ########### now make assignments required by MSS.snow
 	
-set.seed(9999)
 
-library(SSsimple)
 
 ##### randomly remove five sites to serve as interpolation points
 ndx.interp <- sample(1:n.all, size=5) 
@@ -142,6 +147,7 @@ rgr.lower.limit <- 10^(-7) ; d.alpha.lower.limit <- 10^(-3) ; rho.upper.limit <-
 
 ############## tell snowfall to use two threads for local searches
 sfInit(TRUE, cpus=2)
+fun.load.widals.a()
 
 
 ######## now, finally, search for best fit over support
@@ -198,6 +204,7 @@ rgr.lower.limit <- 10^(-7) ; d.alpha.lower.limit <- 10^(-3) ; rho.upper.limit <-
 run.parallel <- TRUE
 
 sfInit(TRUE, cpus=2)
+fun.load.widals.fill()
 
 MSS.snow(fun.load.widals.fill, NA, p.ndx.ls, f.d, 
 seq(2, 0.01, length=10)*matrix(1/10, 10, length(GP)), 10, 7, X=X)
@@ -220,7 +227,7 @@ GP <- c(1/10, 1) ### -- initial hyperparameter values
 
 ############## tell snowfall to use two threads for local searches
 sfInit(TRUE, cpus=2)
-
+fun.load.hals.a()
 
 ######## now, finally, search for best fit over support
 ######## Note that p.ndx.ls and f.d are produced inside fun.load.widals.a()
@@ -261,86 +268,18 @@ Hs <- Hs.all
 GP <- c(1/10, 1) ### -- initial hyperparameter values
 
 sfInit(TRUE, cpus=2)
+fun.load.hals.fill()
+
 MSS.snow(fun.load.hals.fill, NA, p.ndx.ls, f.d, 
 seq(3, 0.01, length=10)*matrix(1, 10, length(GP)), 10, 7, X=X)
-
+sfStop()
 
 sqrt(mean(( (Z.all[train.rng, ] - Z.fill[train.rng, ])^2 )[ Z.na[ train.rng, ] ]))
 
 }
 
-
-
-
-
-
-
-
-## The function is currently defined as
-function (FUN.source, current.best, p.ndx.ls, f.d, sds.mx, k.glob, k.loc.coef, X = NULL)
-{
-    envmh <- environment(NULL)
-    GP <- GP
-    if(is.function(FUN.source)) {
-        FUN.source()
-    } else {
-        if (!is.null(FUN.source)) {
-            source(FUN.source)
-        }
-    }
-    if (is.na(current.best)) {
-        GP.mx <- matrix(GP, 1, length(GP))
-        if (!is.null(FUN.GP)) {
-            GP.mx <- FUN.GP(GP.mx)
-        }
-        current.best <- FUN.MH(1, GP.mx = GP.mx, X = X)
-        cat(current.best, "\n")
-    }
-    if (!is.null(k.glob)) {
-        for (k.times in 1:k.glob) {
-            cat(k.times, "\n")
-            for (p.ndx in p.ndx.ls) {
-                n.mh <- as.integer(k.loc.coef * 2^length(p.ndx))
-                GP.mx <- matrix(GP, n.mh, length(GP), byrow = TRUE)
-                for (ip in p.ndx) {
-                    GP.mx[, ip] <- f.d[[ip]](n.mh, GP[ip], sds.mx[k.times,
-                    ip])
-                }
-                if (!is.null(FUN.GP)) {
-                    GP.mx <- FUN.GP(GP.mx)
-                }
-                if (run.parallel) {
-                    sfOut <- sfClusterApplyLB(1:n.mh, FUN.MH, GP.mx = GP.mx,
-                    X = X)
-                }
-                else {
-                    sfOut <- list()
-                    for (jj in 1:n.mh) {
-                        sfOut[[jj]] <- FUN.MH(jj, GP.mx = GP.mx,
-                        X = X)
-                    }
-                }
-                errs <- unlist(sfOut)
-                errs[is.na(errs)] <- Inf
-                errs[is.nan(errs)] <- Inf
-                best.ndx <- which(errs == min(errs))[1]
-                if (errs[best.ndx] < current.best) {
-                    current.best <- errs[best.ndx]
-                    GP <- GP.mx[best.ndx, , drop = TRUE]
-                    assign("current.best", current.best, envir = envmh)
-                    assign("current.best.GP", GP, envir = envmh)
-                    X <- FUN.I(envmh = envmh, X = X)
-                }
-            }
-        }
-    }
-    if (!is.null(FUN.EXIT)) {
-        FUN.EXIT(envmh = envmh, X = X)
-    }
-    assign("GP", GP, pos = globalenv())
-}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

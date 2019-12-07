@@ -24,6 +24,7 @@ Which column of \code{Hst.ls.Z[[i]]} to insert into the \eqn{i}th row of \code{Z
   \item{rgr.lags}{
 Temporal lagging of \code{Z}.  A scalar integer.
 }
+
 }
 
 \details{
@@ -50,6 +51,8 @@ An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \
 \code{\link{load.Hst.ls.2Zs}}.
 }
 \examples{
+
+
 
 ###### here's an itty-bitty example
 
@@ -89,21 +92,8 @@ load.Hst.ls.Z(Z, Hst.ls.Z=Hst.ls, 1, +1)
 
 
 
-
-
-## The function is currently defined as
-function (Z, Hst.ls.Z, xwhich, rgr.lags = c(0)) 
-{
-    tau <- nrow(Z)
-    min.ndx <- max(1, -min(rgr.lags) + 1)
-    max.ndx <- min(tau, tau - max(rgr.lags))
-    for (i in min.ndx:max.ndx) {
-        Hst.ls.Z[[i]][, xwhich] <- t(Z[i + rgr.lags, ])
-    }
-    return(Hst.ls.Z)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

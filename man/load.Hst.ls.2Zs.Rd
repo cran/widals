@@ -27,6 +27,7 @@ Which column-pair of \code{Hst.ls.Z[[i]]} to insert into the \eqn{i}th row of \c
   \item{rgr.lags}{
 Temporal lagging of \code{Z}.  A scalar integer.
 }
+
 }
 \details{
 This function, along with \code{\link{load.Hst.ls.Z}}, allows the user to convert a set of observations into covariates for another set of observations.  Unlike \code{\link{load.Hst.ls.Z}}, this function \emph{splits} \code{Z} based on the argument \code{Z.na}.  Values associated with \code{FALSE} elements of \code{Z.na} are placed into the first column of the specified column-pair of \code{Hst.ls.Z}, Values associated with \code{TRUE} elements of \code{Z.na} are placed into the second column of the specified column-pair of \code{Hst.ls.Z} (all other values in in the specified column-pair of \code{Hst.ls.Z} are zeroed).
@@ -54,6 +55,7 @@ An unnamed list of length \eqn{\tau}, each element will be a numeric \eqn{n} x \
 
 \examples{
 
+
 ###### here's an itty-bitty example
 
 tau <- 7
@@ -78,25 +80,8 @@ load.Hst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 1, 0)
 load.Hst.ls.2Zs(Z, Z.na, Hst.ls.Z=Hst.ls, 2, 0)
 
 
-
-## The function is currently defined as
-function (Z, Z.na, Hst.ls.Z, xwhich, rgr.lags = c(0)) 
-{
-    tau <- nrow(Z)
-    min.ndx <- max(1, -min(rgr.lags) + 1)
-    max.ndx <- min(tau, tau - max(rgr.lags))
-    for (i in min.ndx:max.ndx) {
-        zi.na <- Z.na[i, ]
-        Hst.ls.Z[[i]][!zi.na, 2 * xwhich - 1] <- Z[i + rgr.lags, 
-            !zi.na]
-        Hst.ls.Z[[i]][zi.na, 2 * xwhich - 1] <- 0
-        Hst.ls.Z[[i]][zi.na, 2 * xwhich] <- Z[i + rgr.lags, zi.na]
-        Hst.ls.Z[[i]][!zi.na, 2 * xwhich] <- 0
-    }
-    return(Hst.ls.Z)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

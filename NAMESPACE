@@ -1,4 +1,8 @@
 useDynLib(widals, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
-exportPattern("^[^\\.]")
+importFrom("stats", rnorm, runif)
 importFrom("snowfall", sfClusterApplyLB)
+importFrom("snowfall", sfExport)
+importFrom("snowfall", sfLibrary)
+importFrom("methods", "is")
+

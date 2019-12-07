@@ -36,6 +36,7 @@ ALS lag.  A scalar integer, typically -1 (\emph{a-prior}), or 0 (\emph{a-posteri
   \item{test.rng}{
 Temporal test range.  A vector of temporal indices of the model test range.
 }
+
 }
 
 %\details{
@@ -86,5 +87,5 @@ function (Z, Hs, Ht, Hst.ls, rho, reg, b.lag, test.rng)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

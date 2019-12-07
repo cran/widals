@@ -1,6 +1,6 @@
 
 
-%%%%%%%%%%%% cd ~/Files/Creations/R/widals/vignettes ; R CMD Sweave widals.Snw
+%%%%%%%%%%%% cd ~/Files/Creations/R/widals/inst/doc ; R64 CMD Sweave widals.Snw
 
 \documentclass[11pt]{article}
 \usepackage{graphicx}
@@ -90,10 +90,8 @@
 
 
 
-%\VignetteIndexEntry{widals Essentials}
-%\VignetteDepends{SSsimple}
-%\VignetteDepends{mvtnorm}
-%\VignetteDepends{maps}
+%\VignetteIndexEntry{Package widals}
+
 
 \begin{document}
 
@@ -161,12 +159,14 @@ options(continue="   ")
 
 \section{ALS Examples}
 
-Let's jump in and work with the included Californis Ozone \cite{CARB} demonstration data set.
+Lets jump in and work with the included Californis Ozone \cite{CARB} demonstration data set.
 
 Important: It is intended that the User run through \emph{all} the code in this Section and the next.
 
 <<b1, eval=TRUE>>=
 options(stringsAsFactors=FALSE)
+
+library(snowfall)
 
 k.cpus <- 2 #### set the number of cpus for snowfall
 
