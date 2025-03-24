@@ -14,7 +14,7 @@ geodesic = FALSE, wrap.around = NULL, GP.mx, stnd.d = FALSE, ltco = -16)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{j}{
-Index used by \code{\link{snowfall}}.  A scalar integer.  Which row of \code{GP.mx} to use for the ALS hyperparameters, \code{GP}.
+Index used by \code{\link[snowfall]{snowfall}}.  A scalar integer.  Which row of \code{GP.mx} to use for the ALS hyperparameters, \code{GP}.
 }
   \item{rm.ndx}{
 A list of vectors of indices to remove for \emph{k}-fold cross-validation.

@@ -8,8 +8,8 @@
 \usepackage{epstopdf}
 \usepackage{caption}
 \usepackage{amsmath, amsthm} %%%%%%%%%%%%%%% MUST BE ADDED
-\usepackage{supertabular}
-\usepackage{wasysym}
+%\usepackage{supertabular}
+%\usepackage{wasysym}
 \usepackage{setspace}
 
 \usepackage{Sweave}

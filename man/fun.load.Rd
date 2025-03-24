@@ -22,7 +22,7 @@ fun.load.widals.fill()
 Please see \code{\link{MSS.snow}} and examples.
 }
 \value{
-Nothing.  The central role of these functions is the creation of four functions required by \code{\link{MSS.snow}}: \code{FUN.MH}, \code{FUN.GP}, \code{FUN.I}, and \code{FUN.EXIT}.  These four functions are assigned to the Global Environment.  This \code{\link{fun.load}} suite of functions also passes needed objects (out-of-scope) to \code{\link{snowfall}} threads if the global user-made variable \code{run.parallel} is set to \code{TRUE}.
+Nothing.  The central role of these functions is the creation of four functions required by \code{\link{MSS.snow}}: \code{FUN.MH}, \code{FUN.GP}, \code{FUN.I}, and \code{FUN.EXIT}.  These four functions are assigned to the Global Environment.  This \code{\link{fun.load}} suite of functions also passes needed objects (out-of-scope) to \code{\link[snowfall]{snowfall}} threads if the global user-made variable \code{run.parallel} is set to \code{TRUE}.
 }
 
 %\references{
